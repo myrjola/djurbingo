@@ -19,7 +19,7 @@ def write(bingo_boards):
     return game_id
 
 
-def read(id):
+def read(game_id):
     db = firestore.client()
-    doc_ref = db.collection(BINGO_GAMES_KEY).document(id)
+    doc_ref = db.collection(BINGO_GAMES_KEY).document(game_id)
     return doc_ref.get().to_dict()
