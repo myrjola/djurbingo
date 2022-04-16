@@ -15,11 +15,11 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT }}'
 
-      - id: frontend:build
+      - id: frontend-build
         working-directory: djurbingo-web
         run: npm ci && npm run build
 
-      - id: frontend:deploy
+      - id: frontend-deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -27,7 +27,7 @@ jobs:
           channelId: live
           projectId: djurbingo
 
-      - id: backend:deploy:create_bingo
+      - id: backend-deploy-create_bingo
         uses: 'google-github-actions/deploy-cloud-functions@v0'
         with:
           name: python-djurbingo-create-bingo-cf
