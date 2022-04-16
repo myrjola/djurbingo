@@ -27,11 +27,10 @@ jobs:
           channelId: live
           projectId: djurbingo
 
-      - id: backend-deploy-create_bingo
+      - id: backend-deploy:create_bingo
         uses: 'google-github-actions/deploy-cloud-functions@v0'
         with:
           name: python-djurbingo-create-bingo-cf
-          uses: actions/checkout@v2
           description: Creates a bingo competition
           region: europe-west1
           source_dir: backend/create_bingo
