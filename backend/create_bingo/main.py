@@ -1,4 +1,4 @@
-from ..lib.bingo_game_service import create_bingo_game
+from bingo_game_service import create_bingo_game
 
 
 def create_bingo(request):

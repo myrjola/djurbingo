@@ -1,4 +1,4 @@
-from .bingo_game_repository import write
+from bingo_game_repository import write
 
 
 def create_bingo_game(words, players):

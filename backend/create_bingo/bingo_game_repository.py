@@ -10,6 +10,7 @@ firebase_admin.initialize_app(cred, {
     'projectId': 'djurbingo',
 })
 
+
 def write(bingo_boards):
     db = firestore.client()
     game_id = uuid.uuid4()
