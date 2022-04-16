@@ -28,7 +28,7 @@ def create_bingo(request):
     if request.method != 'POST':
         return 'Forbidden method', 405
 
-    bingo_game = create_bingo_game(payload.boxes, payload.players)
+    bingo_game = create_bingo_game(payload["boxes"], payload["players"])
 
     # Set CORS headers for the main request
     headers = {
