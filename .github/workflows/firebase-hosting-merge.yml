@@ -27,7 +27,7 @@ jobs:
           channelId: live
           projectId: djurbingo
 
-      - id: backend-deploy:create_bingo
+      - id: backend-deploy-create_bingo
         uses: 'google-github-actions/deploy-cloud-functions@v0'
         with:
           name: python-djurbingo-create-bingo-cf
