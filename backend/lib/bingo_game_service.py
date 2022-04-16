@@ -5,13 +5,13 @@ def create_bingo_game(words, players):
     """
     Create Bingo Game
 
-    :param words: a string containing the words that are part of the bingo game delimited with newline
-    :param players: a string containing the list of players that take part of the bingo game delimited with a newline
+    :param boxes: a string containing a list of the 25 bingo boxes delimited with newlines
+    :param players: a string containing a list of players that take part of the bingo game delimited with a newlines
     :return: a dictionary containing the bingo game for each player it looks like this:
              {
                  "id": abc-123
                  "boards": {
-                     "martin": {
+                     "Martin": {
                        0: {
                          word: elephant,
                          marked: false
@@ -22,7 +22,7 @@ def create_bingo_game(words, players):
                        },
                        ...
                      }
-                     "hanna": {
+                     "Hanna": {
                        ...
                      },
                      ...
