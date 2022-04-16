@@ -13,7 +13,7 @@ firebase_admin.initialize_app(cred, {
 
 def write(bingo_boards):
     db = firestore.client()
-    game_id = uuid.uuid4()
+    game_id = str(uuid.uuid4())
     doc_ref = db.collection(BINGO_GAMES_KEY).document(game_id)
     doc_ref.set(bingo_boards)
     return game_id
