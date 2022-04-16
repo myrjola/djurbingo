@@ -9,9 +9,9 @@ def create_bingo(request):
         The response text, or any set of values that can be turned into a
         Response object using `make_response`
     """
-    print(request)
-
     payload = request.json
+
+    print("payload: ", payload)
 
     if request.method == 'OPTIONS':
         # Allows GET requests from any origin with the Content-Type
