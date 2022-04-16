@@ -7,19 +7,19 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - id: Checkout
+      - id: checkout
         uses: actions/checkout@v2
 
-      - id: 'auth'
+      - id: auth
         uses: 'google-github-actions/auth@v0'
         with:
           credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT }}'
 
-      - id: Build frontend
+      - id: frontend:build
         working-directory: djurbingo-web
         run: npm ci && npm run build
 
-      - id: Deploy frontend
+      - id: frontend:deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -27,7 +27,7 @@ jobs:
           channelId: live
           projectId: djurbingo
 
-      - id: Deploy create bingo function
+      - id: backend:deploy:create_bingo
         uses: 'google-github-actions/deploy-cloud-functions@v0'
         with:
           name: python-djurbingo-create-bingo-cf
