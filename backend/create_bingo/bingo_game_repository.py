@@ -5,8 +5,7 @@ from firebase_admin import firestore
 
 BINGO_GAMES_KEY = u'bingo-games'
 
-#cred = credentials.ApplicationDefault()
-cred = credentials.Certificate('/Users/ext-martin.yrjola/Downloads/djurbingo-f6db848ab0f7.json')
+cred = credentials.ApplicationDefault()
 
 firebase_admin.initialize_app(cred, {
     'projectId': 'djurbingo',

@@ -5,8 +5,8 @@ import {
   CollectionReference,
   doc,
   DocumentSnapshot,
+  FieldValue,
   onSnapshot,
-  runTransaction,
   updateDoc,
 } from "firebase/firestore";
 import { firestoreDb } from "../src/firebaseConfig";
@@ -65,18 +65,24 @@ const Bingo: NextPage = () => {
         {boardEntries.map(([player, boxes]) => (
           <div key={player}>
             <h2>{`${player}s bräde`}</h2>
-            {Array.from({ length: 25 }, (_, i) => (
-              <button
-                onClick={() =>
-                  updateDoc(bingoDoc?.ref!, {
-                    [`${player}.${i}.marked`]: !boxes[i].marked,
-                  })
-                }
-              >
-                {boxes[i].word}
-                {boxes[i].marked && "❌"}
-              </button>
-            ))}
+            {Array.from({ length: 25 }, (_, i) => {
+              const marked = boxes[i].marked;
+              return (
+                <button
+                  className={marked ? styles.marked : undefined}
+                  key={i}
+                  onClick={() =>
+                    updateDoc(bingoDoc?.ref!, {
+                      [`${player}.${i}.marked`]:
+                        !marked as unknown as FieldValue,
+                    })
+                  }
+                >
+                  {boxes[i].word}
+                  {boxes[i].marked && "❌"}
+                </button>
+              );
+            })}
           </div>
         ))}
       </main>
