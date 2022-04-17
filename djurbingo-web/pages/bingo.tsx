@@ -2,11 +2,12 @@ import type { NextPage } from "next";
 import styles from "../styles/Bingo.module.css";
 import { useRouter } from "next/router";
 import {
-  collection,
   CollectionReference,
   doc,
   DocumentSnapshot,
   onSnapshot,
+  runTransaction,
+  updateDoc,
 } from "firebase/firestore";
 import { firestoreDb } from "../src/firebaseConfig";
 import { useEffect, useState } from "react";
@@ -46,7 +47,6 @@ const Bingo: NextPage = () => {
           bingoGameId
         ),
         (doc) => {
-          console.log("Current data: ", doc.data());
           setBingoDoc(doc);
         }
       );
@@ -54,11 +54,31 @@ const Bingo: NextPage = () => {
     }
   }, [bingoGameId]);
 
+  const boardEntries = Object.entries(bingoDoc?.data() ?? {}).sort(
+    ([player1], [player2]) => player1.localeCompare(player2)
+  );
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>Välkommen till Djurbingo!</h1>
-        {bingoDoc && JSON.stringify(bingoDoc.data())}
+        {boardEntries.map(([player, boxes]) => (
+          <div key={player}>
+            <h2>{`${player}s bräde`}</h2>
+            {Array.from({ length: 25 }, (_, i) => (
+              <button
+                onClick={() =>
+                  updateDoc(bingoDoc?.ref!, {
+                    [`${player}.${i}.marked`]: !boxes[i].marked,
+                  })
+                }
+              >
+                {boxes[i].word}
+                {boxes[i].marked && "❌"}
+              </button>
+            ))}
+          </div>
+        ))}
       </main>
     </div>
   );
