@@ -1,6 +1,10 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /bingo-games/{id} {
+      allow read, write;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

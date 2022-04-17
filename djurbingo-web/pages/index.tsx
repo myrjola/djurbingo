@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -28,12 +27,6 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Djurbingo</title>
-        <meta name="description" content="Gör ditt egna bingo" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <h1 className={styles.title}>Välkommen till Djurbingo!</h1>
 
