@@ -1,7 +1,13 @@
 import type { NextPage } from "next";
 import styles from "../styles/Bingo.module.css";
 import { useRouter } from "next/router";
-import { doc, DocumentSnapshot, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  CollectionReference,
+  doc,
+  DocumentSnapshot,
+  onSnapshot,
+} from "firebase/firestore";
 import { firestoreDb } from "../src/firebaseConfig";
 import { useEffect, useState } from "react";
 
@@ -34,7 +40,11 @@ const Bingo: NextPage = () => {
   useEffect(() => {
     if (bingoGameId) {
       const unsub = onSnapshot(
-        doc<BingoGame>(firestoreDb, "bingo-games", bingoGameId),
+        doc<BingoGame>(
+          firestoreDb as unknown as CollectionReference<BingoGame>,
+          "bingo-games",
+          bingoGameId
+        ),
         (doc) => {
           console.log("Current data: ", doc.data());
           setBingoDoc(doc);
