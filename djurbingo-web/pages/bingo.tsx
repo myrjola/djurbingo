@@ -63,27 +63,36 @@ const Bingo: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Välkommen till Djurbingo!</h1>
         {boardEntries.map(([player, boxes]) => (
-          <div key={player}>
+          <section key={player}>
             <h2>{`${player}s bräde`}</h2>
-            {Array.from({ length: 25 }, (_, i) => {
-              const marked = boxes[i].marked;
-              return (
-                <button
-                  className={marked ? styles.marked : undefined}
-                  key={i}
-                  onClick={() =>
-                    updateDoc(bingoDoc?.ref!, {
-                      [`${player}.${i}.marked`]:
-                        !marked as unknown as FieldValue,
-                    })
-                  }
-                >
-                  {boxes[i].word}
-                  {boxes[i].marked && "❌"}
-                </button>
-              );
-            })}
-          </div>
+            <div className={styles.grid}>
+              {Array.from({ length: 25 }, (_, i) => {
+                const marked = boxes[i].marked;
+                const word = boxes[i].word;
+                return (
+                  <button
+                    className={
+                      Array.from(word).length === 1 ? styles.emoji : undefined
+                    }
+                    key={i}
+                    onClick={() =>
+                      updateDoc(bingoDoc?.ref!, {
+                        [`${player}.${i}.marked`]:
+                          !marked as unknown as FieldValue,
+                      })
+                    }
+                  >
+                    <div className={styles.marker}>{marked && "❌"}</div>
+                    <div>
+                      {word.split(/\s/).map((w) => (
+                        <div key={w}>{w}</div>
+                      ))}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
         ))}
       </main>
     </div>

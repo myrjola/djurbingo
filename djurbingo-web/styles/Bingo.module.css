@@ -38,6 +38,32 @@
   color: #e45858;
 }
 
-.marked {
-  
+.marker {
+  position: absolute;
+  font-size: 10vw;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 90vh;
+  width: 90vw;
+  border: 1px solid black;
+  grid-gap: 1px;
+  background-color: black;
+}
+
+.grid button {
+  all: unset;
+  background-color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vw;
+}
+
+.grid button.emoji {
+  font-size: 10vw;
+}
+
