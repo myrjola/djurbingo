@@ -84,7 +84,7 @@ const Bingo: NextPage = () => {
                   >
                     <div className={styles.marker}>{marked && "❌"}</div>
                     <div>
-                      {word.split(/\s/).map((w) => (
+                      {word.split(/\s/).map((w: string) => (
                         <div key={w}>{w}</div>
                       ))}
                     </div>

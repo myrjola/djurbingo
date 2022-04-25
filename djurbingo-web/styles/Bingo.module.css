@@ -27,7 +27,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: clamp(1.5rem, 4vw + 1rem, 4rem);
 }
 
 .title {
@@ -40,14 +40,14 @@
 
 .marker {
   position: absolute;
-  font-size: 10vw;
+  font-size: min(12vw, 600px*0.10);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  height: 90vh;
-  width: 90vw;
+  height: min(90vw, 600px);
+  width: min(90vw, 600px);
   border: 1px solid black;
   grid-gap: 1px;
   background-color: black;
@@ -60,10 +60,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 4vw;
+  font-size: min(4vw, 600px*0.04);
 }
 
 .grid button.emoji {
-  font-size: 10vw;
+  font-size: min(12vw, 600px*0.12);
 }
 
